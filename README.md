@@ -1,2 +1,2 @@
 # git_review
-git review demo
+To stu the git version control soft
