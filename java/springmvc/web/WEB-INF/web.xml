@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>springDispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <!-- springmvc 的配置文件和以前 spring 的配置文件类似 -->
+            <param-value>classpath:applicationContext-mvc.xml</param-value>
+        </init-param>
+        <!-- 在 web 项目启动时，就加载这个 servlet 实例 1 表示加载的顺序号-->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!-- Map all requests to the DispatcherServlet for handling -->
+    <servlet-mapping>
+        <servlet-name>springDispatcherServlet</servlet-name>
+        <!-- 为了支持 rest 风格的 url 这里的 url-patther 需要写成 / -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
