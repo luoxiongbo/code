@@ -6,6 +6,8 @@ package com.lxbStu.web;
 //@Software : IntelliJ IDEA
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,6 +36,29 @@ public class UserServlet {
         System.out.println("品牌 : " + brand);
         System.out.println("价格 : " + price);
         System.out.println("数量 : " + mount);
+        return "submit_ok";
+    }
+
+    @RequestMapping(value = "/test", params = "param")
+    public String test(String param) {
+        if(param != null && !param.equals("")) {
+            System.out.println("测试成功!!!" + param);
+        } else {
+            System.out.println("测试失败!!!");
+        }
+        return "submit_ok";
+    }
+
+    @RequestMapping(value = "/zhanwei/{username}/{pwd}")
+    public String zhanwei(@PathVariable("username")String name, @PathVariable("pwd")String pwd) {
+        System.out.println("username = " + name);
+        System.out.println("pwd = " + pwd);
+        return "submit_ok";
+    }
+
+    @GetMapping(value = "/header", headers = {"Content-Type=application/json"})
+    public String header() {
+        System.out.println("测试成功!!!");
         return "submit_ok";
     }
 }
