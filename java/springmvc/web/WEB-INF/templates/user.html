@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>C语言中文网</title>
 </head>
 <body>
-$END$
+<form th:action="@{/login}" method="post">
+    <table style="margin: auto">
+        <tr>
+            <td colspan="2" align="center">
+                <p style="color: red;margin: auto" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>用户名：</td>
+            <td><input type="text" name="userName" required><br></td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td><input type="password" name="password" required><br></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

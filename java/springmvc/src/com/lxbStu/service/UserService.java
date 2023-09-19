@@ -5,5 +5,8 @@ package com.lxbStu.service;
 //@File : UserService.java
 //@Software : IntelliJ IDEA
 
-public class UserService {
+import com.lxbStu.entity.User;
+
+public interface UserService {
+    User getUserByUserName(String userName);
 }
