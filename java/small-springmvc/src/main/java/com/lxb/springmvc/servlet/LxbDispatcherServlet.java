@@ -142,14 +142,17 @@ public class LxbDispatcherServlet extends HttpServlet {
                 // 执行控制器方法
                 Object result = handler.getMethod().invoke(handler.getController(), parameters);
 
-                
+
                 // 这里是视图解析器的简易实现方法
-                // 非逻辑视图的解析, 没有逻辑直接跳转, thymeleaf视图处理器, 写好前缀和后缀
+
+                // 非逻辑视图的解析 (这里模拟, 如果是个字符串的话, 就当作非逻辑视图进行处理)
+                // ( 原生springmvc中只需要给默认视图解析器就可以了, 它会使用 thymeleaf视图处理器, 写好前缀和后缀 )
                 if (result instanceof String) {
                     // 这里是跳转页面
                     String viewName = (String) result;
                     try {
                         if (viewName.contains(":")) {
+                            // 这里是默认视图解析器用来判断路径是请求转发还是重定向
                             String pageType = viewName.split(":")[0];
                             String pagePath = viewName.split(":")[1];
                             if (pageType.equals("forward")) {
@@ -164,7 +167,8 @@ public class LxbDispatcherServlet extends HttpServlet {
                         e.printStackTrace();
                     }
 
-                // 逻辑视图的解析, 跳转到自定义视图解析器, 执行逻辑语句, 并将model进行处理, 发送给view进行视图渲染
+                // 逻辑视图的解析, 跳转到自定义视图解析器, 执行逻辑语句
+                // (原生的 springmvc 的自定义视图解析器需要自己写请求转发, 意味着它将请求和响应参数发给jsp处理机制, jsp处理机制将数据取出并写在前端页面, 所以自定义视图解析器的渲染功能相当于就是请求转发, 在我的md文件中有chat-GPT写的知识点)
                 } else if(result instanceof ArrayList) {
                     Method method = handler.getMethod();
                     if(method.isAnnotationPresent(ResponseBody.class)) {

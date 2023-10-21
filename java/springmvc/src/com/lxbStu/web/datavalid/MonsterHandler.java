@@ -23,8 +23,7 @@ public class MonsterHandler {
     public String addMonsterUI(Map<String, Object> map) {
         /**老韩解读:
          1. 这里的表单，我们使用 springMVC 的标签来完成, ok
-         2. SpringMVC 表单标签在显示之前必须在 request 中有一个 bean,
-         该 bean的属性和表单标签的字段要对应!
+         2. SpringMVC 表单标签在显示之前必须在 request 中有一个 bean,该 bean的属性和表单标签的字段要对应!
          request 中的 key 为: form 标签的 modelAttribute 属性值，
          比如这里的 monster
          3. SpringMVC 的 form:form 标签的 action 属性值中的 / 不代表 WEB 应用的根目录.
@@ -38,7 +37,7 @@ public class MonsterHandler {
 
         //这里就是往request里面放了一个空的monster
         map.put("monster", new Monster());
-        //这里是视图解析器给前后缀没必要大惊小怪
+        //这里是视图解析器给前后缀
         return "datavalid/monster_addUI";
     }
 

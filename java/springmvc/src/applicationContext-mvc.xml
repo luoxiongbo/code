@@ -36,6 +36,7 @@
         <property name="basename" value="i18n"/>
     </bean>
 
+    <!--  拦截器  -->
     <bean id="interceptor01" class="com.lxbStu.web.interceptor.MyInterceptor01"/>
     <bean id="interceptor02" class="com.lxbStu.web.interceptor.MyInterceptor02"/>
     <!--<mvc:interceptors>-->
