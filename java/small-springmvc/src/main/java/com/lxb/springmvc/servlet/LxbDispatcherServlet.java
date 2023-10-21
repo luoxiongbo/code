@@ -5,7 +5,6 @@ package com.lxb.springmvc.servlet;
 //@File : LxbDispatcherServlet.java
 //@Software : IntelliJ IDEA
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lxb.springmvc.annotation.Controller;
 import com.lxb.springmvc.annotation.RequestMapping;

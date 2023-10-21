@@ -88,6 +88,9 @@ public class LxbWebApplicationContext {
         }
     }
 
+    /**
+     * 执行自动装配功能
+     */
     public void executeWired() {
         if(ioc == null) {
             throw new RuntimeException("spring为空, 没有可装配的");

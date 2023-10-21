@@ -21,8 +21,7 @@ public class XMLParser {
             Document document = reader.read(stream);
             Element rootElement = document.getRootElement();
             Element element = rootElement.element("component-scan");
-            String packagePath = element.attributeValue("base-package");
-            return packagePath;
+            return element.attributeValue("base-package");
         } catch (DocumentException e) {
             throw new RuntimeException(e);
         }

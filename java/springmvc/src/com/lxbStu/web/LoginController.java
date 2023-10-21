@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @Autowired
     private UserService userService;
-
     @RequestMapping("/user")
     public String sayHello() {
         return "user";
