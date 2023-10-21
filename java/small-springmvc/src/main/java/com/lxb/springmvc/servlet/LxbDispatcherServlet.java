@@ -105,22 +105,30 @@ public class LxbDispatcherServlet extends HttpServlet {
 
                 Object[] parameters = new Object[parameterTypes.length];
 
+                /**
+                 * 老师是用名字匹配的, 我是用类型的(请求的类型)
+                 */
                 for (int i = 0; i < parameterTypes.length; ++i) {
+                    /**
+                     * 这步也很重要, 用的时候感觉都很难
+                     */
                     if (parameterTypes[i].isAssignableFrom(HttpServletRequest.class)) {
                         parameters[i] = request;
                     } else if (parameterTypes[i].isAssignableFrom(HttpServletResponse.class)) {
                         parameters[i] = response;
                     }
                 }
+                // 遍历每一个参数
                 for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
                     String key = entry.getKey();
                     String value = entry.getValue()[0];
                     System.out.println("请求参数: " + key + "----" + value);
+                    // 获取参数下标
                     int index = getMethodParametersIndex(handler.getMethod(), key);
                     if (index != -1) {
                         parameters[index] = value;
                     } else {
-                        // 默认参数名字处理
+                        // 如果没找到就用 默认参数名字处理
                         List<String> parameterName = getParameterName(handler.getMethod());
                         for (String name : parameterName) {
                             if (key.equals(name)) {
@@ -131,7 +139,10 @@ public class LxbDispatcherServlet extends HttpServlet {
                     }
                 }
 
+                // 执行控制器方法
                 Object result = handler.getMethod().invoke(handler.getController(), parameters);
+
+                
                 // 这里是视图解析器的简易实现方法
                 // 非逻辑视图的解析, 没有逻辑直接跳转, thymeleaf视图处理器, 写好前缀和后缀
                 if (result instanceof String) {
@@ -183,12 +194,20 @@ public class LxbDispatcherServlet extends HttpServlet {
         return null;
     }
 
+    /**
+     * 得到参数下标
+     * @param method
+     * @param name
+     * @return
+     */
     public int getMethodParametersIndex(Method method, String name) {
         Parameter[] parameters = method.getParameters();
         for (int i = 0; i < parameters.length; ++i) {
+            // 如果它有注解就得到注解的value
             if (parameters[i].isAnnotationPresent(RequestParam.class)) {
                 RequestParam requestParam = parameters[i].getAnnotation(RequestParam.class);
                 String paramName = requestParam.value();
+                // 如果相同就返回下标
                 if (name.equals(paramName)) {
                     return i;
                 }
@@ -197,6 +216,11 @@ public class LxbDispatcherServlet extends HttpServlet {
         return -1;
     }
 
+    /**
+     * 得到方法的简单名字
+     * @param method
+     * @return
+     */
     public List<String> getParameterName(Method method) {
         ArrayList<String> parameterName = new ArrayList<>();
         for (Parameter parameter : method.getParameters()) {
