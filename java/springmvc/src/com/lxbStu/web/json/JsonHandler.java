@@ -60,7 +60,8 @@ public class JsonHandler {
         //构建返回的 ResponseEntity<byte[]>
         HttpStatus statuts = HttpStatus.OK;//返回成功
         HttpHeaders headers = new HttpHeaders();//根据 http 协议这个就是告诉浏览器，这是返回的一个文件,浏览器就弹出小窗口
-        headers.add("Content-Disposition", "attachment;filename=shunping.jpg");
+        headers.add("Content-Disposition", "inline;filename=shunping.jpg");
+        headers.add("charset", "utf-8");
 
         ResponseEntity<byte[]> responseEntity = new ResponseEntity<byte[]>(bytes, headers, statuts);
         return responseEntity;

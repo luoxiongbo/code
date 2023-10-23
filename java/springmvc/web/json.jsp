@@ -15,6 +15,7 @@
     <!-- 编写 jquery 代码和请求 -->
     <script type="text/javascript">
         $(function () {
+            // 这个可以运行
             //绑定超链接点击事件
             $("#getJson").click(function () {
                 //href 是一个完整的请求地址
@@ -34,10 +35,11 @@
                 return false;
             })
 
+            // 还是运行不了
             //绑定按钮点击事件, 提交 json 数据
             //springmvc 可以在后台将 json 封装成对象
             $("button[name='butt1']").click(function () {
-                // console.log("ok")  // 测试用的
+                console.log("ok")  // 测试用的
                 var userName = $("#userName").val();// 取出名字
                 var age = $("#age").val();// 取出年龄
                 // Ajax请求

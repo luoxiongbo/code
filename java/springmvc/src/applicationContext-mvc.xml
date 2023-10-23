@@ -3,6 +3,7 @@
        xmlns:context = "http://www.springframework.org/schema/context"
        xmlns:mvc = "http://www.springframework.org/schema/mvc"
        xsi:schemaLocation = "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
     <!-- 配置自动扫描包 -->
     <context:component-scan base-package = "com.lxbStu"/>
 
@@ -39,8 +40,12 @@
     <!--  拦截器  -->
     <bean id="interceptor01" class="com.lxbStu.web.interceptor.MyInterceptor01"/>
     <bean id="interceptor02" class="com.lxbStu.web.interceptor.MyInterceptor02"/>
+
+
     <!--<mvc:interceptors>-->
+    <!--  这一行可有可无  -->
     <!--    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>-->
+    <!-- 这种配置方式对所有的请求都进行拦截 -->
     <!--    <ref bean="interceptor01"/>-->
     <!--</mvc:interceptors>-->
 
@@ -52,6 +57,7 @@
             <mvc:exclude-mapping path = "/hello"/>
             <ref bean="interceptor01"/>
         </mvc:interceptor>
+
         <mvc:interceptor>
             <mvc:mapping path = "/hi"/>
             <ref bean="interceptor02"/>
@@ -78,6 +84,7 @@
     <!--    </property>-->
     <!--</bean>-->
 
+    <!--  文件上传的解析器  -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 </beans>

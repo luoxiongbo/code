@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
+// 加这个注解就表示是全局注解
 @ControllerAdvice
 public class MyGlobalException {
 

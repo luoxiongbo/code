@@ -5,6 +5,10 @@ package com.lxbStu.web.json;
 //@File : User.java
 //@Software : IntelliJ IDEA
 
+import org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter;
+import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
+
 public class User {
     private String userName;
     private Integer age;

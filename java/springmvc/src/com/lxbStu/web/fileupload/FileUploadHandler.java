@@ -16,12 +16,15 @@ import java.io.IOException;
 
 @Controller
 public class FileUploadHandler {
+    // 搞懂每一个地方, 不留余地
     @RequestMapping("/fileUpload")
     public String fileUpload(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request) throws IOException {
 
         String filename = file.getOriginalFilename();
         System.out.println("上传文件名 : " + filename);
+        // 通过上下文来获取资源
         String path = request.getServletContext().getRealPath("/img/" + filename);
+        // 可以是 inputStream 也可以是 path
         File file1 = new File(path);
         file.transferTo(file1);
         return "success";
