@@ -42,6 +42,7 @@
     <bean id="interceptor02" class="com.lxbStu.web.interceptor.MyInterceptor02"/>
 
 
+    <!--  所有请求都拦截  -->
     <!--<mvc:interceptors>-->
     <!--  这一行可有可无  -->
     <!--    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>-->
@@ -49,6 +50,7 @@
     <!--    <ref bean="interceptor01"/>-->
     <!--</mvc:interceptors>-->
 
+    <!--  拦截器  -->
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
         <!--注意拦截器执行顺序与拦截器定义顺序一致-->
